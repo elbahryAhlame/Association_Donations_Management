@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="css/Gererdon.css" rel="stylesheet" />
+   
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    
+    <div class="container-xl">
+        <div class="table-responsive">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2>Gestion <b>Dons</b></h2>
+                        </div>
+                        <div class="col-sm-6">
+                            <a href="Gestionadmine.html" class="btn btn-success" > <span>Retour</span></a>
+                            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Ajouter un don</span></a>
+                            <a href="#deleteEmployeeModal" class="btn btn-danger" data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Supprimer</span></a>						
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-hover" id="table" onclick="maFonction(event)">
+                    <thead>
+                        <tr>
+                            
+                            <th>Id</th>
+                            <th>Association</th>
+                            <th>Donnateur</th>
+                            <th>Montant</th>
+                            <th>Moyen de paiement</th>
+                            <th>Etat</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+    
+                       
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>        
+    </div>
+    <!-- Edit Modal HTML -->
+    <div id="addEmployeeModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="formajouter">
+                    <div class="modal-header">						
+                        <h4 class="modal-title">Ajouter un don</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">					
+                        <div class="form-group">
+                            <label>Association</label>
+                            <input type="text" class="form-control" required id="association">
+                        </div>
+                        <div class="form-group">
+                            <label>Donnateur</label>
+                            <input type="text" class="form-control" required id="donnateur">
+                        </div>
+                        <div class="form-group">
+                            <label>Montant</label>
+                            <textarea class="form-control" required id="montant"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Moyen de paiement</label>
+                            <textarea class="form-control" required id="paiement"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Etat</label>
+                            <textarea class="form-control" required id="etat"></textarea>
+                        </div>
+                       				
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
+                        <input type="submit" class="btn btn-success" value="Ajouter">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Edit Modal HTML -->
+    <div id="editEmployeeModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form onsubmit="modifier(event)">
+                    <div class="modal-header">						
+                        <h4 class="modal-title">Modifier un don</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">					
+                        <div class="form-group">
+                            <label>Association</label>
+                            <input type="text" class="form-control" required id="associationM">
+                        </div>
+                        <div class="form-group">
+                            <label>Donnateur</label>
+                            <input type="text" class="form-control" required id="donnateurM">
+                        </div>
+                         <div class="form-group">
+                            <label>Montant</label>
+                            <input type="text" class="form-control" required id="montantM">
+                        </div>
+                        <div class="form-group">
+                            <label>Moyen</label>
+                            <input type="text" class="form-control" required id="paiementM">
+                        </div>
+                        <div class="form-group">
+                            <label>Etat</label>
+                            <input type="text" class="form-control" required id="etatM">
+                        </div>
+                       					
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
+                        <input type="submit" class="btn btn-info" value="Enregistrer">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Delete Modal HTML -->
+    <div id="deleteEmployeeModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form>
+                    <div class="modal-header">						
+                        <h4 class="modal-title">suprimer un don</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">					
+                        <p>A vous etes sur de suprimer ce don ?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
+                        <input type="submit" class="btn btn-danger" value="Supprimer">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="js/Geredonadmine.js"></script>
+</body>
+</html>
